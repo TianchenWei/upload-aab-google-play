@@ -28,31 +28,3 @@ runs:
           python-version: '3.8'
           cache: 'pip'
 
-
-    - shell: bash
-      run: |
-        ls -al ${{ github.action_path }}
-        echo ${{ github.action_path }}
-        pwd
-
-
-    - shell: bash
-      run: echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
-
-    - id: upload-aab-and-download-apk
-      shell: bash
-      run: |
-        pwd
-        ls -al
-        python3 ${{ github.action_path }}/upload_aab_and_download_apk.py ${{ inputs.package-name }} -v 401200 -c /tmp/credentials.json
-      
-        files=`find . \( -name "*.apk" \) | sed "s/\.\///"`
-        file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
-        file_name=`echo $file_path | awk -F '/' '{print $NF}'`
-
-        echo $files
-        echo $file_path
-        echo ${{ github.action_path }}
-
-        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
