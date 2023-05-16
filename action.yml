@@ -31,7 +31,10 @@ runs:
 
 
     - shell: bash
-      run: pip install -r ${{ github.action_path }}/requirements.txt
+      run: |
+        echo ${{ github.action_path }}
+        cat ${{ github.action_path }}/requirements.txt
+        pip install -r ${{ github.action_path }}/requirements.txt
 
     - shell: bash
       run: echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
