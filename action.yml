@@ -17,17 +17,10 @@ outputs:
 runs:
   using: "composite"
   steps:
-
-        
     - uses: actions/checkout@v3
     - shell: bash
       run: |
-        ls -al
-        pwd
-        echo '>>>>>>>>>>>>'
-        ls -al ${{ github.action_path }}
         cp ${{ github.action_path }}/requirements.txt requirements.txt
-        ls -al
 
     - uses: actions/setup-python@v3
       with:
@@ -50,4 +43,11 @@ runs:
         files=`find . \( -name "*.apk" \) | sed "s/\.\///"`
         file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
         file_name=`echo $file_path | awk -F '/' '{print $NF}'`
+        
+        echo $file_path
+        echo $file_name
+        echo $${{ github.action_path }}
+        
+        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
+        echo "${{ github.action_path }}" >> $GITHUB_PATH
 
