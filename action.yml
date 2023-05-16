@@ -32,6 +32,8 @@ runs:
     - id: upload-aab-and-download-apk
       shell: bash
       run: |
+        pwd
+        ls -al
         python3 upload_aab_and_download_apk.py ${{ inputs.package-name }} -v 401200 -c /tmp/credentials.json
       
         files=`find . \( -name "*.apk" \) | sed "s/\.\///"`
@@ -41,6 +43,6 @@ runs:
         echo $files
         echo $file_path
         echo ${{ github.action_path }}
-#
-#        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
-#        echo "${{ github.action_path }}" >> $GITHUB_PATH
+
+        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
+        echo "${{ github.action_path }}" >> $GITHUB_PATH
