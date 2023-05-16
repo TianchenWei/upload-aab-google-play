@@ -17,14 +17,19 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v2
+    - shell: bash
+      run: | 
+        pwd
+        ls -al
+
     - uses: actions/setup-python@v3
       with:
           python-version: '3.8'
           cache: 'pip'
 
+
     - shell: bash
-      run: pip install -r script/requirements.txt
+      run: pip install -r requirements.txt
 
     - shell: bash
       run: echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
