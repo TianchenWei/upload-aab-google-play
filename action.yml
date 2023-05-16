@@ -36,12 +36,12 @@ runs:
         python3 upload_aab_and_download_apk.py ${{ inputs.package-name }} -v 401200 -c /tmp/credentials.json
       
         files=`find . \( -name "*.apk" \) | sed "s/\.\///"`
-        file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
-        file_name=`echo $file_path | awk -F '/' '{print $NF}'`
-        
-        echo $files
-        echo $file_path
-        echo ${{ github.action_path }}
-        
-        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
+#        file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
+#        file_name=`echo $file_path | awk -F '/' '{print $NF}'`
+#
+#        echo $files
+#        echo $file_path
+#        echo ${{ github.action_path }}
+#
+#        echo "universal-apk-file-path=$(echo $file_path)" >> $GITHUB_OUTPUT
+#        echo "${{ github.action_path }}" >> $GITHUB_PATH
