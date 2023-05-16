@@ -33,9 +33,11 @@ runs:
       with:
           python-version: '3.8'
           cache: 'pip'
+      run: pip install -r requirements.txt
 
     - shell: bash
-      run: echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
+      run: |
+        echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
 
     - id: upload-aab-and-download-apk
       shell: bash
