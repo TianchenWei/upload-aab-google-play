@@ -17,15 +17,34 @@ outputs:
 runs:
   using: "composite"
   steps:
+
+        
+    - uses: actions/checkout@v3
     - shell: bash
       run: |
-          ls -al ${{ github.action_path }}
-          echo ${{ github.action_path }}
-          pwd
-          cd ${{ github.action_path }}
+        ls -al
+        pwd
+        echo '>>>>>>>>>>>>'
+        ls -al ${{ github.action_path }}
+        cp ${{ github.action_path }}/requirements.txt requirements.txt
+        ls -al
 
     - uses: actions/setup-python@v3
       with:
           python-version: '3.8'
           cache: 'pip'
+
+    - shell: bash
+      run: echo ${{ inputs.service-account-credential-base64 }} | base64 -d > /tmp/credentials.json
+
+    - id: upload-aab-and-download-apk
+      shell: bash
+      run: |
+        pwd
+        ls -al
+        python3 ${{ github.action_path }}/upload_aab_and_download_apk.py ${{ inputs.package-name }} -v 401200 -c /tmp/credentials.json
+      
+        files=`find . \( -name "*.apk" \) | sed "s/\.\///"`
+        file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
+        file_name=`echo $file_path | awk -F '/' '{print $NF}'`
 
