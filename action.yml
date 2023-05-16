@@ -21,6 +21,7 @@ runs:
       run: | 
         pwd
         ls -al
+        echo ${{ github.action_path }}
 
     - uses: actions/setup-python@v3
       with:
