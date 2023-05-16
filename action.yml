@@ -33,7 +33,8 @@ runs:
       with:
           python-version: '3.8'
           cache: 'pip'
-    - run: pip install -r requirements.txt
+    - shell: bash
+      run: pip install -r requirements.txt
 
     - shell: bash
       run: |
