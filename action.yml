@@ -44,7 +44,7 @@ runs:
         file_path=`echo $files | paste -s -d ',' - | awk -F ',' '{print $1}'`
         file_name=`echo $file_path | awk -F '/' '{print $NF}'`
         
-        cat ${{ input.aab-file-path }}
+        cat ${{ inputs.aab-file-path }}
         
         echo $file_path
         echo $file_name
