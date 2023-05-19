@@ -121,7 +121,7 @@ def upload_aab_and_download_universal_apk(credentials_file, package_name, aab_fi
             editId=edit_id, packageName=package_name).execute()
         print(commit_request)
 
-        download_universal_apk(package_name, str(upload_response['versionCode']))
+        download_universal_apk(credentials_file, package_name, str(upload_response['versionCode']))
 
     except client.AccessTokenRefreshError:
         print('The credentials have been revoked or expired, please re-run the '
