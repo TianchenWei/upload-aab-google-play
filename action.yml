@@ -1,5 +1,7 @@
 name: 'Upload AAB and download APK'
-description: 'Upload AAB and download APK, Google Play Console'
+description: 'Upload AAB to Google Play Console and Download the universal APK for latest release'
+icon: upload
+color: blue
 inputs:
   service-account-credential-base64:
     description: 'Service account credential base64'
