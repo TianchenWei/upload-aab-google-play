@@ -14,7 +14,7 @@ argparser.add_argument('-v', '--version_code', help='Version code to download', 
 argparser.add_argument('-f', '--aab', help='The aab path. Example: build/output/google/release/*.aab', required=False)
 
 
-def get_service(credentials_file):
+def get_service(credentials_file) -> ServiceAccountCredentials:
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
         credentials_file, scopes='https://www.googleapis.com/auth/androidpublisher')
 
