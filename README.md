@@ -1,4 +1,4 @@
-# GitHub Action: Upload AAB and Download APK
+# GitHub Action: Upload AAB to Google Play Console and Download APK
 
 This GitHub Action workflow is designed to upload an Android App Bundle (AAB) file to the Google Play Console and download the corresponding universal APK (Android Package) for the latest release. It utilizes the Google Play Developer Publishing API for this purpose.
 
