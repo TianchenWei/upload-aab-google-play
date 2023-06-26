@@ -139,7 +139,10 @@ def main():
     if version_code:
         download_universal_apk(credentials_file, package_name, version_code)
     elif aab_file:
-        upload_aab_and_download_universal_apk(credentials_file, package_name, aab_file)
+        try:
+            upload_aab_and_download_universal_apk(credentials_file, package_name, aab_file)
+        except:
+            pass
 
 
 if __name__ == '__main__':
