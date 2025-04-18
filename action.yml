@@ -26,7 +26,6 @@ runs:
     - uses: actions/setup-python@v3
       with:
           python-version: '3.8'
-          cache: 'pip'
     - shell: bash
       run: pip install -r requirements.txt
 
